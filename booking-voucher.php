@@ -171,7 +171,7 @@ header('Content-Type: text/html');
     <button class="print-btn" onclick="window.print()">Print Voucher</button>
 
     <div class="header">
-        <div class="logo">TourGrid</div>
+        <div class="logo">TourSync</div>
         <div class="voucher-title">BOOKING VOUCHER</div>
         <div class="booking-ref">Booking Reference: <?php echo $booking_reference; ?></div>
     </div>
@@ -279,13 +279,13 @@ header('Content-Type: text/html');
         <ul>
             <li>Please arrive at the departure point at least 30 minutes before the scheduled departure time.</li>
             <li>Carry a valid photo ID proof for all travelers.</li>
-            <li>For any queries or changes to your booking, please contact our customer support at support@tourgrid.com or call +91-1234567890.</li>
+            <li>For any queries or changes to your booking, please contact our customer support at admin@kiwi.ind.in or call +91-9735770574.</li>
             <li>Cancellation policy: Cancellations made 7 days or more before the departure date are eligible for a full refund. Cancellations made within 7 days of the departure date are subject to a 50% cancellation fee.</li>
         </ul>
     </div>
 
     <div class="footer">
-        <p>Thank you for choosing TourGrid for your travel needs!</p>
+        <p>Thank you for choosing TourSync for your travel needs!</p>
         <p>This is a computer-generated voucher and does not require a signature.</p>
         <p>Booking Date: <?php echo date('F d, Y', strtotime($booking['booking_date'] ?? $booking['created_at'])); ?></p>
     </div>

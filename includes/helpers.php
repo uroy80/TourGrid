@@ -2,7 +2,7 @@
 // Database connection function
 function connectDatabase() {
     // Use document root to create an absolute path
-    $root_path = $_SERVER['DOCUMENT_ROOT'] . '/Tourgrid/';
+    $root_path = $_SERVER['DOCUMENT_ROOT'] . '/Toursync/';
     require_once $root_path . 'config/database.php';
     $database = new Database();
     return $database->getConnection();

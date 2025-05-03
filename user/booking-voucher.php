@@ -64,7 +64,7 @@ $pageTitle = "Booking Voucher";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $pageTitle; ?> - TourGrid</title>
+    <title><?php echo $pageTitle; ?> - TourSync</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -151,7 +151,7 @@ $pageTitle = "Booking Voucher";
     <div class="voucher-container">
         <div class="voucher-header">
             <div class="voucher-logo">
-                <img src="../assets/images/logo.png" alt="TourGrid Logo" class="img-fluid">
+                <img src="../assets/images/logo.png" alt="TourSync Logo" class="img-fluid">
             </div>
             <div class="voucher-title">BOOKING VOUCHER</div>
             <div class="voucher-subtitle">Please present this voucher upon arrival</div>
@@ -292,8 +292,8 @@ $pageTitle = "Booking Voucher";
         
         <div class="voucher-footer">
             <p>This voucher is valid only for the specified tour and date. Please keep this voucher with you during the tour.</p>
-            <p>For any inquiries, please contact us at support@tourgrid.com or call +1-234-567-8900.</p>
-            <p>&copy; <?php echo date('Y'); ?> TourGrid. All rights reserved.</p>
+            <p>For any inquiries, please contact us at admin@kiwi.ind.in or call +91-9735770574.</p>
+            <p>&copy; <?php echo date('Y'); ?> TourSync. All rights reserved.</p>
         </div>
     </div>
     

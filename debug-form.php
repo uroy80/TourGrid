@@ -24,7 +24,7 @@ echo "</pre>";
 echo "<h2>Test Form</h2>";
 ?>
 
-<form action="/Tourgrid/user/booking.php" method="get">
+<form action="/Toursync/user/booking.php" method="get">
     <input type="hidden" name="tour_id" value="17">
     <select name="schedule_id">
         <option value="1">Schedule 1</option>
@@ -34,5 +34,5 @@ echo "<h2>Test Form</h2>";
 </form>
 
 <p>
-    <a href="/Tourgrid/user/booking.php?tour_id=17&schedule_id=1">Direct Link Test</a>
+    <a href="/Toursync/user/booking.php?tour_id=17&schedule_id=1">Direct Link Test</a>
 </p>

@@ -266,7 +266,7 @@ include_once 'includes/header.php';
     <div class="container">
         <div class="section-header text-center mb-5">
             <h6 class="text-primary fw-bold text-uppercase">Our Advantages</h6>
-            <h2 class="display-5 fw-bold">Why Choose TourGrid</h2>
+            <h2 class="display-5 fw-bold">Why Choose TourSync</h2>
             <p class="text-muted mx-auto">We're committed to making your Indian adventure unforgettable</p>
         </div>
         
@@ -392,7 +392,7 @@ include_once 'includes/header.php';
                         <div class="testimonial-quote">
                             <i class="fas fa-quote-left"></i>
                         </div>
-                        <p class="testimonial-text">"Amazing experience with TourGrid! The Rajasthan tour was perfectly organized and our guide was knowledgeable and friendly. Will definitely book again!"</p>
+                        <p class="testimonial-text">"Amazing experience with TourSync! The Rajasthan tour was perfectly organized and our guide was knowledgeable and friendly. Will definitely book again!"</p>
                         <div class="testimonial-author">
                             <img src="assets/images/testimonials/user1.jpg" alt="User" class="testimonial-author-img">
                             <div class="testimonial-author-info">
@@ -438,7 +438,7 @@ include_once 'includes/header.php';
                         <div class="testimonial-quote">
                             <i class="fas fa-quote-left"></i>
                         </div>
-                        <p class="testimonial-text">"Himalayan Adventure was a life-changing experience. The cultural immersion and local experiences were incredible. Will definitely book with TourGrid again!"</p>
+                        <p class="testimonial-text">"Himalayan Adventure was a life-changing experience. The cultural immersion and local experiences were incredible. Will definitely book with TourSync again!"</p>
                         <div class="testimonial-author">
                             <img src="assets/images/testimonials/user3.jpg" alt="User" class="testimonial-author-img">
                             <div class="testimonial-author-info">
@@ -495,7 +495,7 @@ include_once 'includes/header.php';
             <div class="row align-items-center">
                 <div class="col-lg-8 mb-4 mb-lg-0">
                     <h2>Ready to Start Your Indian Adventure?</h2>
-                    <p>Book your tour today and experience the wonders of India with TourGrid</p>
+                    <p>Book your tour today and experience the wonders of India with TourSync</p>
                 </div>
                 <div class="col-lg-4 text-lg-end">
                     <a href="tours.php" class="btn btn-light btn-lg rounded-pill me-2">Browse Tours</a>

@@ -85,7 +85,7 @@ include_once 'includes/header.php';
                     <?php if ($booking['status'] === 'confirmed'): ?>
                         <div class="alert alert-success mb-4">
                             <i class="fas fa-check-circle me-2"></i>
-                            Your booking is confirmed! Thank you for choosing TourGrid.
+                            Your booking is confirmed! Thank you for choosing TourSync.
                         </div>
                     <?php elseif ($booking['status'] === 'pending'): ?>
                         <div class="alert alert-warning mb-4">

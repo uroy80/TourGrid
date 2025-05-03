@@ -47,7 +47,7 @@ error_reporting(E_ALL);
                 <ul>
                     <li><a href="user/booking.php?tour_id=17&schedule_id=1">Test Booking Link 1</a></li>
                     <li><a href="user/booking.php?tour_id=17&schedule_id=2">Test Booking Link 2</a></li>
-                    <li><a href="/Tourgrid/user/booking.php?tour_id=17&schedule_id=3">Test Booking Link 3 (Absolute Path)</a></li>
+                    <li><a href="/Toursync/user/booking.php?tour_id=17&schedule_id=3">Test Booking Link 3 (Absolute Path)</a></li>
                 </ul>
             </div>
         </div>

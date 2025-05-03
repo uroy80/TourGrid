@@ -37,7 +37,7 @@ $hotels = getTourHotels($tour_id);
 $destination = getDestinationById($tour['destination_id']);
 
 // Page title
-$page_title = $tour['title'] . " | TourGrid";
+$page_title = $tour['title'] . " | TourSync";
 
 // Include header
 include 'includes/header.php';

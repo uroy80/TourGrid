@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 mb-4">
-                    <h5>TourGrid</h5>
+                    <h5>TourSync</h5>
                     <p>Your ultimate tour management system for unforgettable travel experiences across India.</p>
                     <div class="social-icons">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -46,7 +46,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <p class="mb-0">&copy; <?php echo date('Y'); ?> TourGrid. All rights reserved.</p>
+                        <p class="mb-0">&copy; <?php echo date('Y'); ?> TourSync. All rights reserved.</p>
                     </div>
                     <div class="col-md-6 text-md-end">
                         <p class="mb-0">Designed with <i class="fas fa-heart text-danger"></i> for Indian Tourism</p>

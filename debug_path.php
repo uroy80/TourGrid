@@ -6,7 +6,7 @@ echo "<p>Script Filename: " . $_SERVER['SCRIPT_FILENAME'] . "</p>";
 echo "<p>PHP Self: " . $_SERVER['PHP_SELF'] . "</p>";
 
 // Check if important files exist
-$root_path = $_SERVER['DOCUMENT_ROOT'] . '/Tourgrid/';
+$root_path = $_SERVER['DOCUMENT_ROOT'] . '/Toursync/';
 echo "<p>Root Path: " . $root_path . "</p>";
 
 $files_to_check = [

@@ -118,7 +118,7 @@ for ($i = 0; $i < $height; $i += 40) {
 
 // Add text
 $textColor = imagecolorallocate($image, 255, 255, 255);
-$text = "TourGrid Placeholder";
+$text = "TourSync Placeholder";
 
 // Center the text
 if (!function_exists('imagettftext')) {
