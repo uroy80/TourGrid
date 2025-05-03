@@ -1,0 +1,209 @@
+-- First, check if tables exist and create them if they don't
+CREATE TABLE IF NOT EXISTS `bookings` (
+  `booking_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `tour_id` int(11) NOT NULL,
+  `schedule_id` int(11) NOT NULL,
+  `booking_reference` varchar(20) NOT NULL,
+  `num_people` int(11) NOT NULL DEFAULT 1,
+  `base_amount` decimal(10,2) NOT NULL,
+  `tax_amount` decimal(10,2) NOT NULL,
+  `discount_amount` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `total_amount` decimal(10,2) NOT NULL,
+  `payment_method` varchar(50) DEFAULT NULL,
+  `special_requests` text DEFAULT NULL,
+  `booking_status` enum('pending','confirmed','cancelled') NOT NULL DEFAULT 'pending',
+  `payment_status` enum('pending','paid','refunded') NOT NULL DEFAULT 'pending',
+  `cancellation_reason` text DEFAULT NULL,
+  `cancellation_date` datetime DEFAULT NULL,
+  `booking_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`booking_id`),
+  KEY `user_id` (`user_id`),
+  KEY `tour_id` (`tour_id`),
+  KEY `schedule_id` (`schedule_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS `booking_travelers` (
+  `traveler_id` int(11) NOT NULL AUTO_INCREMENT,
+  `booking_id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `age` int(3) NOT NULL,
+  `gender` enum('Male','Female','Other') NOT NULL,
+  `id_type` varchar(50) NOT NULL,
+  `id_number` varchar(50) NOT NULL,
+  PRIMARY KEY (`traveler_id`),
+  KEY `booking_id` (`booking_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Check if payments table exists
+DROP TABLE IF EXISTS `payments`;
+CREATE TABLE `payments` (
+  `payment_id` int(11) NOT NULL AUTO_INCREMENT,
+  `booking_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,  -- Ensure user_id column exists
+  `amount` decimal(10,2) NOT NULL,
+  `payment_method` varchar(50) NOT NULL,
+  `payment_status` enum('pending','completed','failed','refunded') NOT NULL DEFAULT 'pending',
+  `transaction_id` varchar(100) DEFAULT NULL,
+  `payment_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`payment_id`),
+  KEY `booking_id` (`booking_id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS `refunds` (
+  `refund_id` int(11) NOT NULL AUTO_INCREMENT,
+  `booking_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `amount` decimal(10,2) NOT NULL,
+  `status` enum('pending','processed','rejected') NOT NULL DEFAULT 'pending',
+  `refund_reason` text DEFAULT NULL,
+  `refund_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`refund_id`),
+  KEY `booking_id` (`booking_id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Drop existing foreign key constraints if they exist
+-- This is a safer approach to avoid the "Duplicate key" error
+
+-- For bookings table
+SET @bookings_fk1 = (SELECT IF(
+    EXISTS(
+        SELECT * FROM information_schema.TABLE_CONSTRAINTS 
+        WHERE CONSTRAINT_SCHEMA = DATABASE() 
+        AND TABLE_NAME = 'bookings' 
+        AND CONSTRAINT_NAME = 'bookings_ibfk_1'
+    ),
+    'ALTER TABLE `bookings` DROP FOREIGN KEY `bookings_ibfk_1`;',
+    'SELECT 1;'
+));
+
+SET @bookings_fk2 = (SELECT IF(
+    EXISTS(
+        SELECT * FROM information_schema.TABLE_CONSTRAINTS 
+        WHERE CONSTRAINT_SCHEMA = DATABASE() 
+        AND TABLE_NAME = 'bookings' 
+        AND CONSTRAINT_NAME = 'bookings_ibfk_2'
+    ),
+    'ALTER TABLE `bookings` DROP FOREIGN KEY `bookings_ibfk_2`;',
+    'SELECT 1;'
+));
+
+SET @bookings_fk3 = (SELECT IF(
+    EXISTS(
+        SELECT * FROM information_schema.TABLE_CONSTRAINTS 
+        WHERE CONSTRAINT_SCHEMA = DATABASE() 
+        AND TABLE_NAME = 'bookings' 
+        AND CONSTRAINT_NAME = 'bookings_ibfk_3'
+    ),
+    'ALTER TABLE `bookings` DROP FOREIGN KEY `bookings_ibfk_3`;',
+    'SELECT 1;'
+));
+
+PREPARE stmt1 FROM @bookings_fk1;
+EXECUTE stmt1;
+DEALLOCATE PREPARE stmt1;
+
+PREPARE stmt2 FROM @bookings_fk2;
+EXECUTE stmt2;
+DEALLOCATE PREPARE stmt2;
+
+PREPARE stmt3 FROM @bookings_fk3;
+EXECUTE stmt3;
+DEALLOCATE PREPARE stmt3;
+
+-- For booking_travelers table
+SET @travelers_fk1 = (SELECT IF(
+    EXISTS(
+        SELECT * FROM information_schema.TABLE_CONSTRAINTS 
+        WHERE CONSTRAINT_SCHEMA = DATABASE() 
+        AND TABLE_NAME = 'booking_travelers' 
+        AND CONSTRAINT_NAME = 'booking_travelers_ibfk_1'
+    ),
+    'ALTER TABLE `booking_travelers` DROP FOREIGN KEY `booking_travelers_ibfk_1`;',
+    'SELECT 1;'
+));
+
+PREPARE stmt4 FROM @travelers_fk1;
+EXECUTE stmt4;
+DEALLOCATE PREPARE stmt4;
+
+-- For payments table
+SET @payments_fk1 = (SELECT IF(
+    EXISTS(
+        SELECT * FROM information_schema.TABLE_CONSTRAINTS 
+        WHERE CONSTRAINT_SCHEMA = DATABASE() 
+        AND TABLE_NAME = 'payments' 
+        AND CONSTRAINT_NAME = 'payments_ibfk_1'
+    ),
+    'ALTER TABLE `payments` DROP FOREIGN KEY `payments_ibfk_1`;',
+    'SELECT 1;'
+));
+
+SET @payments_fk2 = (SELECT IF(
+    EXISTS(
+        SELECT * FROM information_schema.TABLE_CONSTRAINTS 
+        WHERE CONSTRAINT_SCHEMA = DATABASE() 
+        AND TABLE_NAME = 'payments' 
+        AND CONSTRAINT_NAME = 'payments_ibfk_2'
+    ),
+    'ALTER TABLE `payments` DROP FOREIGN KEY `payments_ibfk_2`;',
+    'SELECT 1;'
+));
+
+PREPARE stmt5 FROM @payments_fk1;
+EXECUTE stmt5;
+DEALLOCATE PREPARE stmt5;
+
+PREPARE stmt6 FROM @payments_fk2;
+EXECUTE stmt6;
+DEALLOCATE PREPARE stmt6;
+
+-- For refunds table
+SET @refunds_fk1 = (SELECT IF(
+    EXISTS(
+        SELECT * FROM information_schema.TABLE_CONSTRAINTS 
+        WHERE CONSTRAINT_SCHEMA = DATABASE() 
+        AND TABLE_NAME = 'refunds' 
+        AND CONSTRAINT_NAME = 'refunds_ibfk_1'
+    ),
+    'ALTER TABLE `refunds` DROP FOREIGN KEY `refunds_ibfk_1`;',
+    'SELECT 1;'
+));
+
+SET @refunds_fk2 = (SELECT IF(
+    EXISTS(
+        SELECT * FROM information_schema.TABLE_CONSTRAINTS 
+        WHERE CONSTRAINT_SCHEMA = DATABASE() 
+        AND TABLE_NAME = 'refunds' 
+        AND CONSTRAINT_NAME = 'refunds_ibfk_2'
+    ),
+    'ALTER TABLE `refunds` DROP FOREIGN KEY `refunds_ibfk_2`;',
+    'SELECT 1;'
+));
+
+PREPARE stmt7 FROM @refunds_fk1;
+EXECUTE stmt7;
+DEALLOCATE PREPARE stmt7;
+
+PREPARE stmt8 FROM @refunds_fk2;
+EXECUTE stmt8;
+DEALLOCATE PREPARE stmt8;
+
+-- Now add the foreign key constraints
+ALTER TABLE `bookings`
+  ADD CONSTRAINT `bookings_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `bookings_ibfk_2` FOREIGN KEY (`tour_id`) REFERENCES `tours` (`tour_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `bookings_ibfk_3` FOREIGN KEY (`schedule_id`) REFERENCES `tour_schedules` (`schedule_id`) ON DELETE CASCADE;
+
+ALTER TABLE `booking_travelers`
+  ADD CONSTRAINT `booking_travelers_ibfk_1` FOREIGN KEY (`booking_id`) REFERENCES `bookings` (`booking_id`) ON DELETE CASCADE;
+
+ALTER TABLE `payments`
+  ADD CONSTRAINT `payments_ibfk_1` FOREIGN KEY (`booking_id`) REFERENCES `bookings` (`booking_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `payments_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
+
+ALTER TABLE `refunds`
+  ADD CONSTRAINT `refunds_ibfk_1` FOREIGN KEY (`booking_id`) REFERENCES `bookings` (`booking_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `refunds_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
